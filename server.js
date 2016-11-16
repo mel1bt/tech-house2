@@ -2,8 +2,14 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
+app.set("port", (process.env.PORT || 3000));
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + "/public"));
+
+server.listen(app.get("port"), function() {
+ console.log("Servidor corriendo en", app.get("port"));
+});
+//app.use(express.static(__dirname + '/public'));
 
 io.on("connection", function(client) {
 	 client.on("conectando", function (usuario) {
@@ -13,9 +19,9 @@ io.on("connection", function(client) {
   });
 });
 
-server.listen(3000, function() {
-	console.log("El servidor ha iniciado en el puerto 3000");
-});
+// server.listen(3000, function() {
+// 	console.log("El servidor ha iniciado en el puerto 3000");
+// });
 
 io.sockets.on('connection', function(client){
    var userName;
