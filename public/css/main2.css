@@ -7,3 +7,18 @@
 .views{
 	margin-top: -30px;
 }
+.facebook{
+	background-color:  #3b5998;
+    color: white;
+    padding: 10px 40px;
+    text-decoration: none;
+    border-radius: 3px;
+}
+.container{
+	    position: relative;
+    top: 137px;
+}
+.container2{
+	    position: relative;
+    top: 157px;
+}
