@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>TECH-HOUSE</title>
+		<meta name="description" content="An experimental interactive room slideshow based on the prototype concept by Bilal Mechairia's Dribbble shot 'Spaces'" />
+		<meta name="keywords" content="room, slideshow, 3d, perspective, animation, css, javascript, web development" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="fonts/icomoon/icomoon.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<link rel="stylesheet" type="text/css" href="css/main2.css" />
+		<link rel="stylesheet" type="text/css" href="css/animations.css" />
+		<script src="js/modernizr-custom.js"></script>
+		  <script>
+            var nameUser = "";
+      // cargamos el sdk de forma asincrónica
+      (function(d){
+         var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement('script'); js.id = id; js.async = true;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         ref.parentNode.insertBefore(js, ref);
+       }(document));
+ 
+     // Iniciamos el sdk y su configuración
+      window.fbAsyncInit = function() {
+         FB.init({
+          appId      : '858378667632421', //la appid de tu aplicación facebook
+          status   : true,
+      cookie   : true,
+      xfbml    : true,
+      oauth    : true //enables OAuth 2.0
+        });
+ 
+        //manejador para comprobar si el status del usuario ha cambiado o no 
+        FB.Event.subscribe('auth.statusChange', function(response) {
+          if (response.authResponse) {
+            //si el usuario es logueado correctamente le saludamos
+            FB.api('/me', function(me){
+              if (me.name) {
+                document.getElementById('saludo').innerHTML = me.name;
+                document.getElementById('names').textContent = me.name;
+                // document.getElementById('userFab').innerHTML = me.name;
+                nameUser = me.name;
+                document.getElementById('foto').innerHTML = 
+                '<img src="https://graph.facebook.com/' + me.id + '/picture">';
+              }
+            })
+          } else {
+            //si el usuario no tiene permiso porque ha cerrado sesión o simplemente
+            //no tiene permisos de la aplicación redirigimos al login
+            window.location = "index.html";
+          }
+        });
+    //al pulsar en salir cerramos sesión y mandamos al inicio
+        document.getElementById('salir').addEventListener('click', function(){
+          FB.logout();
+        }); 
+      } 
+    </script>
+
+	</head>
+	<body class="fondo">
+	<a href=""><div class="play"><img src="img/play.png"></div></a>
+	<header class="codrops-header">
+		<h1 class="txtWelcome">Bienvenid@, <span id="saludo"></span>(<a href="#" id="salir">Cerrar Sesion</a>)</h1>	
+		</header>
+		<p class="info info--size">View on a larger screen to see the 3D display</p>
+		<p class="info info--support">Your browser does not support preserve-3d!</p>
+		<div id="slideshow" class="slideshow ">
+			<div class="slide">
+				<div class="scene">
+					<div class="views">
+						<div class="view">
+							<img class="view__img" src="img/bedroom/a.jpg" alt="Side" />
+							<div class="item item--horse">
+								<img class="item__img" src="img/bedroom/horse.jpg" alt="Horse" data-transform-z="60" />
+								<div class="item__info">
+									<h3 class="item__title">Deco Horse</h3>
+									<div class="item__price"><sup>$</sup>59</div>
+									<button class="button button--buy"><i class="icon icon--shopping-cart"></i><span class="text-hidden">Add to cart</span></button>
+								</div>
+								<button class="button button--close"><i class="icon icon--close"></i><span class="text-hidden">Close</span></button>
+							</div>
+						</div>
+						<div class="view view--rotate view--rotate-left">
+							<img class="view__img" src="img/bedroom/b.jpg" alt="Front" />
+							<div class="item item--blanket">
+								<img class="item__img" src="img/bedroom/blanket.jpg" alt="Blanket" data-transform-z="90" />
+								<div class="item__info">
+									<h3 class="item__title">Blanket</h3>
+									<div class="item__price"><sup>$</sup>129</div>
+									<button class="button button--buy"><i class="icon icon--shopping-cart"></i><span class="text-hidden">Add to cart</span></button>
+								</div>
+								<button class="button button--close"><i class="icon icon--close"></i><span class="text-hidden">Close</span></button>
+							</div>
+							<div class="item item--picture">
+								<img class="item__img" src="img/bedroom/picture.jpg" alt="Picture" data-transform-z="80" />
+								<div class="item__info">
+									<h3 class="item__title">Golden Frame</h3>
+									<div class="item__price"><sup>$</sup>39</div>
+									<button class="button button--buy"><i class="icon icon--shopping-cart"></i><span class="text-hidden">Add to cart</span></button>
+								</div>
+								<button class="button button--close"><i class="icon icon--close"></i><span class="text-hidden">Close</span></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="slide">
+				<div class="scene">
+					<div class="views">
+						<div class="view view--rotate view--rotate-right">
+							<img class="view__img" src="img/living/a.jpg" alt="Front" />
+							<div class="item item--pillow">
+								<img class="item__img" src="img/living/pillow.jpg" alt="Vase" data-transform-z="60" />
+								<div class="item__info">
+									<h3 class="item__title">Deco Pillow</h3>
+									<div class="item__price"><sup>$</sup>29</div>
+									<button class="button button--buy"><i class="icon icon--shopping-cart"></i><span class="text-hidden">Add to cart</span></button>
+								</div>
+								<button class="button button--close"><i class="icon icon--close"></i><span class="text-hidden">Close</span></button>
+							</div>
+							<div class="item item--lamp">
+								<img class="item__img" src="img/living/lamp.jpg" alt="Lamp" data-transform-z="60" />
+								<div class="item__info">
+									<h3 class="item__title">Swedish Lamp</h3>
+									<div class="item__price"><sup>$</sup>89</div>
+									<button class="button button--buy"><i class="icon icon--shopping-cart"></i><span class="text-hidden">Add to cart</span></button>
+								</div>
+								<button class="button button--close"><i class="icon icon--close"></i><span class="text-hidden">Close</span></button>
+							</div>
+							<div class="item item--silvervase">
+								<img class="item__img" src="img/living/silvervase.jpg" alt="Silver Vase" data-transform-z="60" />
+								<div class="item__info">
+									<h3 class="item__title">Silver Vase</h3>
+									<div class="item__price"><sup>$</sup>49</div>
+									<button class="button button--buy"><i class="icon icon--shopping-cart"></i><span class="text-hidden">Add to cart</span></button>
+								</div>
+								<button class="button button--close"><i class="icon icon--close"></i><span class="text-hidden">Close</span></button>
+							</div>
+						</div>
+						<div class="view">
+							<img class="view__img" src="img/living/b.jpg" alt="Side" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="slide">
+				<div class="scene">
+					<div class="views">
+						<div class="view">
+							<img class="view__img" src="img/cocina/cocinab.jpg" alt="Side" />
+							<div class="item item--isla">
+								<img class="item__img" src="img/cocina/isla.png" alt="Shakers" data-transform-z="80" />
+								<div class="item__info">
+									<h3 class="item__title"> ISLA</h3>
+									<div class="item__price"><sup>$</sup>2159</div>
+									<button class="button button--buy"><i class="icon icon--shopping-cart"></i><span class="text-hidden">Add to cart</span></button>
+								</div>
+								<button class="button button--close"><i class="icon icon--close"></i><span class="text-hidden">Close</span></button>
+							</div>
+							<div class="item item--silla">
+								<img class="item__img" src="img/cocina/silla.png" alt="silla"  data-transform-z="60" />
+								<div class="item__info">
+									<h3 class="item__title">Silla</h3>
+									<div class="item__price"><sup>$</sup>149</div>
+									<button class="button button--buy"><i class="icon icon--shopping-cart"></i><span class="text-hidden">Add to cart</span></button>
+								</div>
+								<button class="button button--close"><i class="icon icon--close"></i><span class="text-hidden">Close</span></button>
+							</div>
+						</div>
+						<div class="view view--rotate view--rotate-left">
+							<img class="view__img" src="img/cocina/rotatea.jpg" alt="Front" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="slide">
+				<div class="scene">
+					<div class="views">
+						<div class="view">
+							<img class="view__img" src="img/bathroom/a.jpg" alt="Side" />
+						</div>
+						<div class="view">
+							<img class="view__img" src="img/bathroom/b.jpg" alt="Front" />
+							<div class="item item--sink">
+								<img class="item__img" src="img/bathroom/sink.jpg" alt="Sink" data-transform-z="40" />
+								<div class="item__info">
+									<h3 class="item__title">Grohe Sink</h3>
+									<div class="item__price"><sup>$</sup>399</div>
+									<button class="button button--buy"><i class="icon icon--shopping-cart"></i><span class="text-hidden">Add to cart</span></button>
+								</div>
+								<button class="button button--close"><i class="icon icon--close"></i><span class="text-hidden">Close</span></button>
+							</div>
+							<div class="item item--pillows">
+								<img class="item__img" src="img/bathroom/pillows.jpg" alt="Pillows" data-transform-z="70" />
+								<div class="item__info">
+									<h3 class="item__title">Pillow Set</h3>
+									<div class="item__price"><sup>$</sup>69</div>
+									<button class="button button--buy"><i class="icon icon--shopping-cart"></i><span class="text-hidden">Add to cart</span></button>
+								</div>
+								<button class="button button--close"><i class="icon icon--close"></i><span class="text-hidden">Close</span></button>
+							</div>
+						</div>
+						<div class="view view--rotate view--rotate-left">
+							<img class="view__img" src="img/bathroom/c.jpg" alt="Front" />
+							<div class="item item--bidet">
+								<img class="item__img" src="img/bathroom/bidet.jpg" alt="Bidet" data-transform-z="90" />
+								<div class="item__info">
+									<h3 class="item__title">Grohe Bidet</h3>
+									<div class="item__price"><sup>$</sup>259</div>
+									<button class="button button--buy"><i class="icon icon--shopping-cart"></i><span class="text-hidden">Add to cart</span></button>
+								</div>
+								<button class="button button--close"><i class="icon icon--close"></i><span class="text-hidden">Close</span></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="live-chat">
+				<header class="clearfix">
+						<h4>TECH-HOUSE</h4>
+						<span class="chat-message-counter"></span>
+				</header>
+				<div class="chat">
+					<div class="chat-history" id="messages">
+						<div class="chat-message clearfix">
+                             <div id="foto"></div>
+						     <!--<img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32">-->
+							<div class="chat-message-content clearfix">  
+								<h5>TECH-HOUSE</h5>
+								<p >Hola te puedo ayudar  <span id="names"></span>?</p>
+							</div> <!-- end chat-message-content -->
+						</div> <!-- end chat-message -->
+						<hr>
+					</div> <!-- end chat-history -->
+					<form>
+						<fieldset>
+							<input type="text" placeholder="Type your message…" autofocus id="message">
+							<input type="hidden">
+						</fieldset>
+					</form>
+				</div> <!-- end chat -->
+			</div> <!-- end live-chat -->
+			<nav class="nav">
+				<a href="#" class="nav__item"><span class="text-hidden">The Master Bedroom</span></a>
+				<a href="#" class="nav__item"><span class="text-hidden">The Dining Room</span></a>
+				<a href="#" class="nav__item"><span class="text-hidden">The Bathroom</span></a>
+				<a href="#" class="nav__item"><span class="text-hidden">The Office</span></a>
+			</nav>
+			<div class="titles">
+				<h2 class="title">The Bedroom <span class="title__sub">Relax</span></h2>
+				<h2 class="title">The Living Room <span class="title__sub">Socialize</span></h2>
+				<h2 class="title">The Kitchen <span class="title__sub">Create</span></h2>
+				<h2 class="title">The Bathroom <span class="title__sub">Refresh</span></h2>
+			</div>
+		</div><!-- /container -->
+		<script src="js/classie.js"></script>
+		<script src="js/main.js"></script>
+		<script>
+		(function() {
+			var slideshow = new Slideshow(document.getElementById('slideshow'));
+		})();
+		</script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="js/main2.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+	</body>
+</html>

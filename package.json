@@ -1,0 +1,33 @@
+{
+  "name": "json",
+  "version": "1.0.0",
+  "description": "JS AJAX JSON",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "JS",
+    "jquery",
+    "AJAX",
+    "\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D",
+    "\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[D",
+    "\u001b[C\u001b[C\u001b[C\u001b[C"
+  ],
+  "author": "ANDREA CABRERA",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "socket.io": "^1.5.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stolenhead/tech-house.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stolenhead/tech-house/issues"
+  },
+  "homepage": "https://github.com/stolenhead/tech-house#readme"
+}
