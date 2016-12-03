@@ -19,3 +19,5 @@ una tienda virtual con un login en Facebook.
  2. Se abrira un chat live en el que podrás escribir tus dudas
  
  3. Escoger lo que mas te gusta .
+ 
+ ![myimage-alt-tag](http://4.1m.yt/JCwCQ6J.jpg)
